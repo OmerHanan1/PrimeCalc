@@ -9,6 +9,14 @@ namespace PrimeCalc
     {
         //public static ConcurrentStack<int> thStack = new ConcurrentStack<int>();
 
+        /// <summary>
+        /// Main function.
+        /// </summary>
+        /// <param name="args">
+        /// (1) LowerBound
+        /// (2) UpperBound
+        /// (3) NumberOfThreads to use
+        /// </param>
         static void Main(string[] args)
         {
             // arrange
@@ -38,6 +46,15 @@ namespace PrimeCalc
             //Console.WriteLine(thStack.Count);
         }
 
+        /// <summary>
+        /// Thread work. given two int's, printing all PrimeNumbers between them.
+        /// </summary>
+        /// <param name="lowerBound">
+        /// Use in range, lowerBound
+        /// </param>
+        /// <param name="upperBound">
+        /// Use in range, UpperBound
+        /// </param>
         public static void DoWork(int lowerBound, int upperBound) 
         {
             for (int i = lowerBound; i < upperBound; i++)
@@ -48,6 +65,16 @@ namespace PrimeCalc
                 }
         }
 
+        /// <summary>
+        /// Check if a given number is a Prime number.
+        /// Iterate from 2 to sqrt(number) checking modular arithmetic.
+        /// </summary>
+        /// <param name="number">
+        /// Int number
+        /// </param>
+        /// <returns>
+        /// true if Prime number, false if Composite number.
+        /// </returns>
         public static Boolean isPrime(int number) 
         {
             if (number == 0 || number == 1)
