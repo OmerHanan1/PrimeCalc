@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -6,6 +7,8 @@ namespace PrimeCalc
 {
     internal class Program
     {
+        //public static ConcurrentStack<int> thStack = new ConcurrentStack<int>();
+
         static void Main(string[] args)
         {
             int lowerbound = int.Parse(args[0]);
@@ -29,13 +32,18 @@ namespace PrimeCalc
             {
                 thread.Join();
             }
+
+            //Console.WriteLine(thStack.Count);
         }
 
         public static void DoWork(int lowerBound, int upperBound) 
         {
             for (int i = lowerBound; i < upperBound; i++)
-                if (isPrime(i)) 
+                if (isPrime(i))
+                {
                     Console.WriteLine(i);
+                    //thStack.Push(i);
+                }
         }
 
         public static Boolean isPrime(int number) 
