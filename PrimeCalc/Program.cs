@@ -7,8 +7,6 @@ namespace PrimeCalc
 {
     internal class Program
     {
-        //public static ConcurrentStack<int> thStack = new ConcurrentStack<int>();
-
         /// <summary>
         /// Main function.
         /// </summary>
@@ -32,18 +30,18 @@ namespace PrimeCalc
                 int startAt = i * range;
                 int endAt = (i+1) * range;
 
-                Thread thread = new Thread(() => 
-                    DoWork(startAt, endAt));
+                Thread thread = 
+                    new Thread(() => DoWork(startAt, endAt));
                 threads.Add(thread);
-                thread.Start(); // act
+
+                // act
+                thread.Start();
             }
 
             foreach (Thread thread in threads) 
             {
                 thread.Join();
             }
-
-            //Console.WriteLine(thStack.Count);
         }
 
         /// <summary>
@@ -59,10 +57,7 @@ namespace PrimeCalc
         {
             for (int i = lowerBound; i < upperBound; i++)
                 if (isPrime(i))
-                {
                     Console.WriteLine(i);
-                    //thStack.Push(i);
-                }
         }
 
         /// <summary>
