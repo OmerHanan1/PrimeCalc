@@ -11,11 +11,13 @@ namespace PrimeCalc
 
         static void Main(string[] args)
         {
+            // arrange
             int lowerbound = int.Parse(args[0]);
             int upperbound = int.Parse(args[1]);
             int numOfThreads = int.Parse(args[2]);
             List<Thread> threads = new List<Thread>();
 
+            // assert
             for (int i = 0; i < numOfThreads; i++) 
             {
                 int range = (int) (upperbound-lowerbound) / numOfThreads;
@@ -23,9 +25,9 @@ namespace PrimeCalc
                 int endAt = (i+1) * range;
 
                 Thread thread = new Thread(() => 
-                    DoWork(startAt, endAt)); // callBack
+                    DoWork(startAt, endAt));
                 threads.Add(thread);
-                thread.Start();
+                thread.Start(); // act
             }
 
             foreach (Thread thread in threads) 
