@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace PrimeCalc
@@ -10,7 +11,8 @@ namespace PrimeCalc
             int lowerbound = int.Parse(args[0]);
             int upperbound = int.Parse(args[1]);
             int numOfThreads = int.Parse(args[2]);
-            Thread[] threads = new Thread[numOfThreads];
+            List<Thread> threads = new List<Thread>();
+
             for (int i = 0; i < numOfThreads; i++) 
             {
                 int range = (int) (upperbound-lowerbound) / numOfThreads;
@@ -19,7 +21,12 @@ namespace PrimeCalc
 
                 Thread thread = new Thread(() => 
                     DoWork(startAt, endAt)); // callBack
+                threads.Add(thread);
                 thread.Start();
+            }
+
+            foreach (Thread thread in threads) 
+            {
                 thread.Join();
             }
         }
